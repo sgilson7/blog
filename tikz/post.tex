@@ -1,0 +1,7 @@
+% A uniform bounding box, so every figure has the same natural width and the
+% column scales them all by the same factor -- otherwise a narrow figure is
+% upscaled more than a wide one and their labels end up different sizes.
+\path ([xshift=-\HalfW]current bounding box.center)
+      rectangle ([xshift=\HalfW]current bounding box.center);
+\end{tikzpicture}
+\end{document}

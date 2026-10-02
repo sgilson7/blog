@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thinking about curriculum as a knowledge graph — Sam Gilson</title>
+<meta name="description" content="I want to explore how a curriculum might help students build connections between knowledge components, and how working through concrete problems might make those connections easier to draw.">
+<link rel="canonical" href="https://sgilson7.github.io/blog/thinking-about-curriculum-as-a-knowledge-graph/">
+
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sam Gilson">
+<meta property="og:title" content="Thinking about curriculum as a knowledge graph">
+<meta property="og:description" content="I want to explore how a curriculum might help students build connections between knowledge components, and how working through concrete problems might make those connections easier to draw.">
+<meta property="og:url" content="https://sgilson7.github.io/blog/thinking-about-curriculum-as-a-knowledge-graph/">
+<meta property="og:image" content="https://sgilson7.github.io/img/sam-gilson.jpg">
+<meta property="og:image:alt" content="Sam Gilson">
+<meta name="twitter:image" content="https://sgilson7.github.io/img/sam-gilson.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Thinking about curriculum as a knowledge graph">
+<meta name="twitter:description" content="I want to explore how a curriculum might help students build connections between knowledge components, and how working through concrete problems might make those connections easier to draw.">
+<meta name="author" content="Sam Gilson">
+
+<link rel="stylesheet" href="/blog/styles.css?v=57618276">
+<link rel="alternate" type="application/atom+xml" title="Sam Gilson" href="/blog/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Thinking about curriculum as a knowledge graph",
+  "description": "I want to explore how a curriculum might help students build connections between knowledge components, and how working through concrete problems might make those connections easier to draw. Starting with cats and multisets, I work through a graph account of remembering and an experience connecting interpolation to recurrence relations. These are provisional ideas that need a literature review, including work that could contradict them, before I use them to design a combinatorics unit.",
+  "url": "https://sgilson7.github.io/blog/thinking-about-curriculum-as-a-knowledge-graph/",
+  "datePublished": "2026-10-02",
+  "author": {"@type": "Person", "name": "Sam Gilson", "@id": "https://orcid.org/0009-0002-2394-8649", "sameAs": "https://orcid.org/0009-0002-2394-8649"}
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="band">
+  <div class="wrap">
+    <p class="brand"><a href="/">Sam Gilson</a></p>
+    <nav aria-label="Sections">
+      <a href="/publications/">Research</a>
+      <a href="/dissertation/">Dissertation</a>
+      <a href="/concepts/">Concepts</a>
+      <a href="/teaching/">Teaching</a>
+      <a href="/materials/">Course materials</a>
+      <a href="/projects/">Tools and games</a>
+      <a href="/cv/">CV</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+  </div>
+</header>
+
+
+<main id="main">
+<section class="stripe"><div class="wrap">
+<h1>Thinking about curriculum as a knowledge graph</h1>
+<p class="posted"><time datetime="2026-10-02">2 October 2026</time></p>
+<p>I want to try designing a curriculum using what I have been learning about knowledge components and knowledge graphs from Ken Koedinger’s and Tiffany Barnes’s work. I have a picture in my head of how this might work, and I want to get it into a form I can examine. This is a proposal that I think could become part of my dissertation. I still need a literature review to support or deny the points I am making, and to find out how much of this work already exists.</p>
+<figure class="postfig">
+<img src="/blog/img/fig0.svg?v=57618276" alt="Three knowledge components in a row, connected by the relations described in the post: cats, fur patterns, and blue lynx point. Chumbles, a blue lynx point Siberian, is drawn below as a concrete instance of the last one." loading="lazy">
+<figcaption>Three knowledge components in a row, connected by the relations described in the post: cats, fur patterns, and blue lynx point. Chumbles, a blue lynx point Siberian, is drawn below as a concrete instance of the last one.</figcaption>
+</figure>
+The connections I develop here are my own, untested extensions of that reading. I am trying to describe how I think people might translate a curriculum into an understanding they can use.
+<p>I am starting with a knowledge component as a piece of information that a person can apply in a meaningful way. In the graph I am imagining, each node represents one of those components. An edge represents a relation that the person uses to move from one component to another while thinking. Whether someone can actually apply the knowledge they think they have is another can of worms.</p>
+<p>My example is cats. One piece of information I have about cats is that their fur patterns are determined by genetics and can sometimes be related to their sex. That gives me a connection between cats and fur patterns. Another piece of information is that blue lynx point is a type of fur pattern. My cat, Chumbles, is a blue lynx point Siberian, so I have a very concrete connection between those pieces of information. Chumbles is, essentially, my proof that this pattern exists.</p>
+<p>I can use one piece of information to get to another. The edge is how I remember that the two are related. That is the graph structure I have in mind when I start thinking about curriculum.</p>
+
+</div></section><section class="stripe"><div class="wrap">
+<h2>Helping a learner draw the edges</h2>
+<figure class="postfig">
+<img src="/blog/img/fig1.svg?v=57618276" alt="What I recall directly connects to sets, and sets connects to multisets through repeated elements and distinguishability. A dashed line shows the direct connection to multisets cut, leaving the route through sets." loading="lazy">
+<figcaption>What I recall directly connects to sets, and sets connects to multisets through repeated elements and distinguishability. A dashed line shows the direct connection to multisets cut, leaving the route through sets.</figcaption>
+</figure>
+<p>When I design a curriculum, I am trying to help a learner build an understanding with some structure to it. I need to know which knowledge components I am presenting and how I expect them to connect. Those connections could help me work out the flow of the class.</p>
+<p>In discrete mathematics, I might start with sets. Once a student has an understanding of a set in terms of whether an element is included or excluded, I can introduce multisets. I then need to help the student draw a connection between the two.</p>
+<p>The relation I am trying to explain involves repeated elements and whether elements are distinguishable in the problem I am considering. From there, I start connecting to counting problems and stars and bars. I also start thinking about binary strings, because zeros and ones give me a way to represent problems involving repeated elements. My explanation of distinguishability needs checking, but this is the path through the material that I am trying to describe.</p>
+<p>For a learner with few knowledge components to draw on in this area, I think the curriculum has a job to do at each connection. I am saying, “You have learned about sets. Here is a multiset, and here is how it relates back.” I am introducing a node and helping the learner draw an edge to it.</p>
+<p>That makes me think about what happens to an edge after the class has moved on. The last time I used a relation seems relevant to whether I can use it now. I might remember that sets and multisets both exist while having trouble remembering exactly how they connect.</p>
+<p>I picture memory as a source with connections to the components I can recall directly. I was reaching for a max-flow/min-cut picture when I first thought this through: if a connection from that source is cut, I can no longer get directly to the component. I would need to make that analogy more precise.</p>
+<p>I might still have another route. If I cannot directly remember a multiset, perhaps I can begin with what I remember about sets. If the relation between sets and multisets is still available, I can follow it and recover the idea. In my graph picture, I have searched from another entry point and then redrawn the direct connection. I am imagining something like a breadth-first search through what I know.</p>
+<p>I can also use this picture to describe rote memorization. I imagine a student who has memorized much of a textbook and can recall individual pieces of information, while having few connections between them. The source has many outgoing edges, but the rest of the graph is sparse. That student might hope for a multiple-choice test because the individual items are familiar. A problem that asks the student to reason across those items could be harder.</p>
+<p>This is part of what I would want a curriculum graph to represent: the connections I hope a student can use by the end of the course.</p>
+</div></section><section class="stripe"><div class="wrap">
+<h2>Concrete problems inside an abstract component</h2>
+<figure class="postfig">
+<img src="/blog/img/fig2.svg?v=57618276" alt="A box labelled multisets contains three connected concrete problems: donut flavourings, binary strings, and stars and bars. An arrow leaves the box towards another abstract component." loading="lazy">
+<figcaption>A box labelled multisets contains three connected concrete problems: donut flavourings, binary strings, and stars and bars. An arrow leaves the box towards another abstract component.</figcaption>
+</figure>
+<p>In class, I can present a knowledge component and explain how it connects to another. In homework, I ask students to work with concrete versions of those ideas.</p>
+<p>For multisets, I was thinking about a donut store. I have six unflavored donuts and two flavors, vanilla and chocolate. How many different ways can I flavor the six donuts? In the version I am imagining, the donuts are indistinguishable from one another. There can be several items of the same kind.</p>
+<p>I start wondering whether the abstract knowledge component itself contains a smaller graph. I have an abstract understanding of multisets, but inside that understanding are the concrete problems I have worked through and the connections I have made between them. A knowledge component could be a boundary around that smaller graph.</p>
+<p>My theory is that the internal structure matters when I try to connect the abstract component to something else. If I have worked through several concrete versions and understand how they relate, perhaps I am more able to draw a new edge from that abstract knowledge to another abstract component. I am especially interested in the density of the connections between the examples.</p>
+<p>An experience from teaching discrete mathematics is part of why I think about it this way.</p>
+<p>I took a numerical analysis course in which I worked on interpolation. Given a set of points, how could I construct a function that passed through them? One approach I remember involved polynomial terms arranged so that, at a particular point, the other terms became zero. I also worked through problems about the error between an interpolation and a function that generated the points.</p>
+<p>The idea I took away was something I was thinking of as orthogonality. I pictured different terms as separate axes, with each one representing the effect of a particular point on the interpolation.</p>
+<p>Then, while teaching discrete mathematics, I was working with linear homogeneous recurrence relations. When the characteristic equation has a repeated root, I remembered the step of multiplying the second corresponding term in the closed form by <em>n</em>. While working through a problem in class, I suddenly connected that step to what I had been doing with interpolation. I thought I was seeing the same idea of making the terms orthogonal.</p>
+<p>I need to check the mathematics of that connection, including whether “orthogonal” is the right description. What I am trying to preserve here is how the connection occurred to me. I had done many concrete interpolation problems in numerical analysis. I had also practiced many recurrence problems because I was preparing to teach them. During an application, I drew what felt like a long edge between two parts of my understanding.</p>
+<p>I do not think I would have made that connection without the numerical analysis class. In my graph picture, the concrete problems I had worked through in both areas helped me notice a structure that I thought they shared.</p>
+</div></section><section class="stripe"><div class="wrap">
+<h2>Searching through what I know</h2>
+<figure class="postfig">
+<img src="/blog/img/fig3.svg?v=57618276" alt="Two groups of problems, one headed numerical analysis and one headed discrete mathematics, with a single long arrow drawn between them labelled as the remembered reading of orthogonality that still needs checking." loading="lazy">
+<figcaption>Two groups of problems, one headed numerical analysis and one headed discrete mathematics, with a single long arrow drawn between them labelled as the remembered reading of orthogonality that still needs checking.</figcaption>
+</figure>
+<p>That experience leads me toward a broader account of problem solving. When I encounter a new problem, I may have some relevant knowledge components and some structure connecting them. I can look elsewhere in what I know for a similar structure and try to apply it.</p>
+<p>That is how I was thinking about the interpolation and recurrence connection. I drew on an idea from one part of my understanding to make sense of a problem in another. In this picture, a search through the graph can help me connect to a component I did not previously know.</p>
+<p>I imagine my own graph as sparse compared with the knowledge I could potentially encounter. Learning would include discovering a component that I have no connection to yet and working out how to connect it to something I already understand.</p>
+<p>Research makes this picture more complicated. If I take the available components to represent what people currently know, research could generate new components and then make them available to others. I build an understanding of a new area, and writing a paper gives me a way to help someone else build an understanding of it.</p>
+<p>That makes paper writing look a little like curriculum design to me. As I write, I introduce an idea and explain a connection. I use that connection to introduce something else, eventually helping the reader reach the new result. I am trying to arrange a path that someone can follow as they read.</p>
+<p>I think this could be an interesting framework for describing how I think and solve problems. There are also many factors that would affect whether I can follow a particular path at a particular time.</p>
+<p>I can have multiple ways of remembering how two things are related. I also imagine something like a multiplier on an edge that depends on my motivation or interest in the problem. Chemistry is my example. I have been pretty good at chemistry, but I am just not very interested in it. When I stop using it, my understanding feels as though it decays almost immediately.</p>
+<p>I still remember some connections to quantum physics and orbitals. Ask me to do stoichiometry, though, and I no longer know how to do it. I think my interests matter to which connections I maintain and which new ones I am able to draw. I would want to understand how that fits with research on memory and problem solving.</p>
+</div></section><section class="stripe"><div class="wrap">
+<h2>Thinking while teaching</h2>
+<figure class="postfig">
+<img src="/blog/img/fig4.svg?v=57618276" alt="A question not seen before leads to components available off the top of my head and to a relation I can follow in the moment, both reaching an approximate answer, with a dashed line to reading about it afterwards." loading="lazy">
+<figcaption>A question not seen before leads to components available off the top of my head and to a relation I can follow in the moment, both reaching an approximate answer, with a dashed line to reading about it afterwards.</figcaption>
+</figure>
+<p>Teaching brings another complication. As an instructor, I have to learn how to answer a question I have never seen before while standing in front of potentially a hundred people. I need to give an explanation that they can follow.</p>
+<p>Sometimes I end up giving an approximate answer based on what I think is happening. Then I go home and read about it. If the question was far enough outside what I knew, I might email the student or return to it the next day.</p>
+<p>That makes direct recall important to teaching, too. I need to have a lot available off the top of my head. I also wonder how students interpret the time I spend thinking. Some might take a pause as a sign that I do not know the material. Others might see working through the question as evidence that I do. I do not have one account that covers those different reactions.</p>
+<p>I think there could be useful research in tracing how someone moves through these connections in real time. Answering an unfamiliar question in class is one setting where I would want to understand that process better. My graph picture gives me a way to start describing it, but the factors affecting those connections still need to be worked out.</p>
+</div></section><section class="stripe"><div class="wrap">
+<h2>A combinatorics curriculum I want to try</h2>
+<figure class="postfig">
+<img src="/blog/img/fig5.svg?v=57618276" alt="Four components in order, sets, multisets, counting, and events and event spaces, drawn with rims of decreasing weight to stand for how available each one has become." loading="lazy">
+<figcaption>Four components in order, sets, multisets, counting, and events and event spaces, drawn with rims of decreasing weight to stand for how available each one has become.</figcaption>
+</figure>
+<p>I want to bring this back to something I can design. Before I do that, I need to find out how these ideas relate to existing work on knowledge components and knowledge graphs. Ken Koedinger’s work and Tiffany Barnes’s work are starting points for me. I also want to look at how psychology describes human problem solving.</p>
+<p>I need that review to check the claims I have made here, including the possibility that some are wrong. I want to know whether someone has already developed the kind of account I am imagining. Since I am in Dr. Barnes’s lab, I also expect to talk with her about it.</p>
+<p>The curriculum I want to draft is a discrete mathematics unit on combinatorics. I am thinking about sets and multisets, then counting and an introduction to probability through events and event spaces. I also have in mind the Pyrenees work from Dr. Min Chi at NC State.</p>
+<p>I want to construct a graph whose knowledge components and edges represent the curriculum. Then I want to produce the teaching artifacts that would make that graph concrete. I would need material that introduces a component and helps students connect it to something they have already encountered. I would also need the tasks through which students practice applying it.</p>
+<p>My hope is that, by the end of the unit, a student’s internal understanding would have the structure I was trying to teach. I have been picturing that as the student’s graph coming to resemble the curriculum graph. Whether that is a useful or defensible goal is part of what I need to investigate.</p>
+<p>The visual image I keep coming back to is a knowledge component with a rim that gets brighter as I understand it better. When I first connect to it, it starts to turn on. As I work through concrete versions, it becomes more available to me, and I imagine myself becoming more capable of drawing a new edge from it. I want to use the combinatorics unit to work out what that picture would mean for the materials I actually ask students to use.</p>
+<p><a href="/blog/">Back to the blog</a></p>
+
+</div></section>
+</main>
+
+<footer class="band">
+  <div class="wrap">
+    <p class="ids">
+      <a href="mailto:sagilson@ncsu.edu">Email Sam Gilson</a> &middot;
+      <a href="https://orcid.org/0009-0002-2394-8649">ORCID 0009-0002-2394-8649</a> &middot;
+      <a href="https://scholar.google.com/citations?user=UIYAyjoAAAAJ&#38;hl=en">Google Scholar</a> &middot;
+      <a href="https://github.com/sgilson7">GitHub</a> &middot;
+      <a href="https://eliza.csc.ncsu.edu/">Game2Learn lab</a>
+    </p>
+    <p class="licence">Original website text by Sam Gilson is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Papers, teaching materials, software, and quoted material retain their own notices.</p>
+    <p class="meta">Build <code>57618276</code></p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+\documentclass[tikz,border=6pt]{standalone}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds}
+\newcommand{\NodeW}{30mm}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{rule}{HTML}{9AA3AB}
+\definecolor{edge}{HTML}{555555}
+\definecolor{tint}{HTML}{F7E9E9}
+\definecolor{faint}{HTML}{C8CFD5}
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\small,
+  kc/.style={draw=rule, fill=white, rounded corners=2pt, text width=\NodeW,
+             align=center, inner sep=6pt, text=ink},
+  small/.style={draw=rule, fill=white, rounded corners=2pt, align=center,
+                inner sep=4pt, text=ink, font=\sffamily\scriptsize},
+  src/.style={draw=edge, fill=tint, circle, inner sep=5pt, text=ink,
+              font=\sffamily\scriptsize, align=center},
+  rel/.style={-{Stealth[length=2.6mm]}, draw=edge, thick},
+  weak/.style={-{Stealth[length=2.6mm]}, draw=faint, thick, dashed},
+  lab/.style={font=\sffamily\scriptsize, text=edge, align=center,
+              fill=white, inner sep=2pt}
+]
+\node[small] (i1) {interpolation\\problems};
+\node[small, below=6mm of i1] (i2) {error between\\interpolation\\and function};
+\begin{scope}[on background layer]
+  \node[draw=rule, rounded corners=4pt, fit=(i1)(i2), inner sep=5mm,
+        label={[font=\sffamily\small, text=ink]above:Numerical analysis}] (na) {};
+\end{scope}
+\node[small, right=52mm of i1] (r1) {recurrence\\problems};
+\node[small, below=6mm of r1] (r2) {repeated root:\\multiply a term\\by $n$};
+\begin{scope}[on background layer]
+  \node[draw=rule, rounded corners=4pt, fit=(r1)(r2), inner sep=5mm,
+        label={[font=\sffamily\small, text=ink]above:Discrete mathematics}] (dm) {};
+\end{scope}
+\draw[rel] (na) -- node[lab,midway,above]{what I was thinking of\\as orthogonality}
+                   node[lab,midway,below]{(a remembered reading\\I still need to check)} (dm);
+\end{tikzpicture}
+\end{document}

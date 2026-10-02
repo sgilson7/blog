@@ -1,0 +1,30 @@
+\documentclass[tikz,border=6pt]{standalone}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds}
+\newcommand{\NodeW}{30mm}
+\definecolor{ink}{HTML}{1A1A1A}
+\definecolor{rule}{HTML}{9AA3AB}
+\definecolor{edge}{HTML}{555555}
+\definecolor{tint}{HTML}{F7E9E9}
+\definecolor{faint}{HTML}{C8CFD5}
+\begin{document}
+\begin{tikzpicture}[
+  font=\sffamily\small,
+  kc/.style={draw=rule, fill=white, rounded corners=2pt, text width=\NodeW,
+             align=center, inner sep=6pt, text=ink},
+  small/.style={draw=rule, fill=white, rounded corners=2pt, align=center,
+                inner sep=4pt, text=ink, font=\sffamily\scriptsize},
+  src/.style={draw=edge, fill=tint, circle, inner sep=5pt, text=ink,
+              font=\sffamily\scriptsize, align=center},
+  rel/.style={-{Stealth[length=2.6mm]}, draw=edge, thick},
+  weak/.style={-{Stealth[length=2.6mm]}, draw=faint, thick, dashed},
+  lab/.style={font=\sffamily\scriptsize, text=edge, align=center,
+              fill=white, inner sep=2pt}
+]
+\node[src] (mem) {what I\\recall\\directly};
+\node[kc, right=24mm of mem] (sets) {Sets};
+\node[kc, right=24mm of sets] (multi) {Multisets};
+\draw[rel] (mem) -- node[lab,midway,above]{still\\available} (sets);
+\draw[rel] (sets) -- node[lab,midway,above]{repeated elements;\\distinguishability} (multi);
+\draw[weak] (mem) to[out=-35,in=-145] node[lab,midway,below]{cut: I cannot get\\there directly} (multi);
+\end{tikzpicture}
+\end{document}

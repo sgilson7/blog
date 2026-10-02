@@ -1,0 +1,486 @@
+/* The look follows the 17 September lecture deck: dark slate bands, white
+   pages, a serif for headings, a humanist sans for text, a mono for ids.
+   The deck's own faces cannot be redistributed, so these are the open
+   stand-ins confirmed in M0 recon (decision 32, PLAN.md D11).
+
+   Every page is now one Markdown body rendered into alternating bands, so the
+   rules below are nearly all element rules: a heading, a paragraph, a list, a
+   table, a figure. There are no per-page component classes left to drift. */
+
+/* TeX Gyre Schola stands in for Century Schoolbook. GUST Font License. */
+@font-face {
+  font-family: "Schola";
+  src: url("/fonts/tex-gyre-schola/texgyreschola-regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Schola";
+  src: url("/fonts/tex-gyre-schola/texgyreschola-bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Schola";
+  src: url("/fonts/tex-gyre-schola/texgyreschola-italic.otf") format("opentype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+/* Carlito stands in for Calibri. SIL OFL 1.1, Reserved Font Name "Carlito". */
+@font-face {
+  font-family: "Carlito";
+  src: url("/fonts/carlito/Carlito-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Carlito";
+  src: url("/fonts/carlito/Carlito-Bold.ttf") format("truetype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Carlito";
+  src: url("/fonts/carlito/Carlito-Italic.ttf") format("truetype");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+/* Courier Prime stands in for Courier New. SIL OFL 1.1. */
+@font-face {
+  font-family: "Courier Prime";
+  src: url("/fonts/courier-prime/CourierPrime-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  --ink: #1B2430;
+  /* Was #6B7680, which measured 4.64:1 on white and would have been 3.93:1 on
+     the tinted band — under AA both ways once a tint existed. 6.03:1 and
+     5.11:1 now. */
+  --grey: #5A646E;
+  --rule: #C9CFD3;
+  /* A pale Wolfpack Red. Chosen for LUMINANCE, not hue: it is 1.18:1 against
+     white, which is a 20-step difference out of 255 in greyscale, so the band
+     edge is visible to somebody who sees no colour at all. A 6% tint looked
+     nicer and was invisible in monochrome. */
+  --tint: #F7E9E9;
+  /* The band boundary, drawn as a line so the sections are still separable
+     with no colour perception whatsoever. */
+  --edge: #9AA4AB;
+  --panel: #E6EAEC;
+  --green: #2A6B4A;
+  --red: #8B2E2E;
+  --blue: #2F4BA0;
+  --page: #FFFFFF;
+  --serif: "Schola", Georgia, "Times New Roman", serif;
+  --sans: "Carlito", "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "Courier Prime", "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--sans);
+}
+
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* --- the header and the footer ---------------------------------------- */
+
+.band {
+  background: var(--ink);
+  color: var(--page);
+}
+.band a { color: var(--page); }
+header.band { padding: 1rem 0; }
+header.band .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.brand {
+  margin: 0;
+  font: 700 1.15rem/1.2 var(--serif);
+  letter-spacing: 0.01em;
+}
+.brand a { text-decoration: none; }
+/* Seven items, and a long label wraps rather than being clipped. */
+header.band nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; font-size: 0.95rem; }
+
+footer.band {
+  /* The bands provide the vertical rhythm; a margin here read as a stray
+     empty band between the last section and the footer. */
+  padding: 2rem 0 2.5rem;
+  font-size: 0.9rem;
+}
+footer.band p { margin: 0 0 0.5rem; }
+footer.band .ids { display: flex; flex-wrap: wrap; gap: 0.3rem 0.5rem; }
+footer.band .licence { color: var(--rule); max-width: 60ch; }
+footer.band .licence a { color: var(--page); }
+footer.band .meta { color: var(--rule); margin-top: 0.75rem; }
+footer.band code { font-family: var(--mono); color: var(--page); }
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--page); color: var(--ink); padding: 0.5rem 1rem;
+}
+.skip:focus { left: 0.5rem; top: 0.5rem; z-index: 10; }
+
+/* --- alternating bands ------------------------------------------------
+   Sections alternate white and a pale red so a reader can tell where one part
+   of the page stops and the next begins. Colour is never the only cue: every
+   band also carries a rule along its top edge, and the two backgrounds differ
+   in lightness rather than only in hue. */
+
+main { padding-top: 0; }
+
+.stripe { padding: 2.1rem 0; }
+.stripe:nth-of-type(even) { background: var(--tint); }
+.stripe + .stripe { border-top: 1px solid var(--edge); }
+.stripe > .wrap > :first-child { margin-top: 0; }
+.stripe:first-of-type { padding-top: 2.4rem; }
+.stripe:last-of-type { padding-bottom: 3rem; }
+
+/* Somebody who has asked their system for more contrast gets a stronger step
+   and a heavier edge. */
+@media (prefers-contrast: more) {
+  :root { --tint: #F2DEDE; --edge: #6E7880; }
+  .stripe + .stripe { border-top-width: 2px; }
+}
+
+/* Windows high-contrast mode drops background colours entirely, so the rule
+   is the only thing left holding the sections apart. Keep it. */
+@media (forced-colors: active) {
+  .stripe + .stripe { border-top: 1px solid CanvasText; }
+}
+
+/* --- type ------------------------------------------------------------- */
+
+h1 {
+  font: 700 2.1rem/1.15 var(--serif);
+  margin: 0 0 0.9rem;
+  letter-spacing: -0.01em;
+  /* A paper title is long and has to wrap, never be clipped or shortened. */
+  overflow-wrap: break-word;
+}
+h2 {
+  font: 700 1.3rem/1.25 var(--serif);
+  margin: 2.5rem 0 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+}
+/* An h3 is a record in a list: a paper, a concept, a course, a file. It carries
+   the link, so it is set at reading size rather than as another heading step. */
+h3 {
+  font: 700 1.06rem/1.35 var(--serif);
+  margin: 1.9rem 0 0.4rem;
+  overflow-wrap: break-word;
+}
+h3 + p { margin-top: 0; }
+p { margin: 0 0 1rem; max-width: 68ch; }
+
+/* The first paragraph of a page carries it, and on a paper page the first three
+   are the record: what the work is, who wrote it, and where it appeared. */
+.stripe:first-of-type > .wrap > p:first-of-type { font-size: 1.1rem; }
+
+a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--ink); }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.2rem; }
+li { margin-bottom: 0.3rem; max-width: 66ch; }
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+code {
+  font: 400 0.9em/1.5 var(--mono);
+}
+pre {
+  background: var(--ink);
+  color: var(--page);
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border-radius: 2px;
+  margin: 0 0 1.2rem;
+}
+pre code { font: 400 0.84rem/1.55 var(--mono); color: inherit; }
+
+/* --- tables ----------------------------------------------------------
+   The procedures and the map's relationship table. A table has to stay
+   readable on a narrow screen, so it scrolls sideways inside its own box
+   rather than being shrunk or clipped. */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 1.3rem;
+  font-size: 0.95rem;
+  display: block;
+  overflow-x: auto;
+}
+thead th {
+  text-align: left;
+  font: 700 0.85rem/1.4 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--grey);
+  border-bottom: 1px solid var(--edge);
+  padding: 0.4rem 0.7rem 0.4rem 0;
+}
+tbody td {
+  vertical-align: top;
+  padding: 0.55rem 0.7rem 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+tbody tr:last-child td { border-bottom: 0; }
+/* The first column is a label: A0, B1, Brief. Keep it from wrapping mid-word. */
+tbody td:first-child { white-space: nowrap; font-weight: 700; }
+
+/* --- quotations and source records ----------------------------------- */
+
+blockquote.student {
+  margin: 0.7rem 0 1.2rem;
+  padding: 0.75rem 1rem;
+  background: var(--panel);
+  border-left: 3px solid var(--green);
+}
+blockquote.student p {
+  margin: 0;
+  font: 400 1.02rem/1.55 var(--serif);
+  font-style: italic;
+}
+blockquote.student cite {
+  display: block;
+  margin-top: 0.45rem;
+  font: 400 0.82rem/1.4 var(--mono);
+  font-style: normal;
+  color: var(--grey);
+}
+blockquote {
+  margin: 0 0 1.2rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--rule);
+  color: var(--ink);
+}
+
+/* An abstract is a source record, not site prose: it is set in the serif and
+   marked as a verbatim quotation in the markup. */
+.abstract {
+  border-left: 3px solid var(--edge);
+  padding-left: 0.9rem;
+  margin: 0 0 0.6rem;
+}
+.abstract p { margin-bottom: 0.8rem; font-family: var(--serif); }
+p.provenance {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  color: var(--grey);
+}
+ul.errata {
+  margin: 0 0 1.4rem;
+  padding-left: 1.1rem;
+  font-size: 0.88rem;
+  color: var(--grey);
+}
+
+/* --- figures ---------------------------------------------------------- */
+
+figure { margin: 0 0 1.6rem; }
+img { max-width: 100%; height: auto; }
+figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.88rem;
+  color: var(--grey);
+  line-height: 1.6;
+  max-width: 68ch;
+}
+.slidefig img {
+  display: block;
+  border: 1px solid var(--rule);
+  background: var(--page);
+}
+
+/* --- a blog post's figures -------------------------------------------- */
+/* Compiled from TikZ, so they are line art rather than photographs: no border
+   and no background, because a rule around a drawing that already has its own
+   boxes reads as a second frame. They scale to the column and never exceed
+   their natural size, since an upscaled vector of 9pt labels is not more
+   readable, only larger. */
+.postfig {
+  margin: 1.6rem 0;
+}
+.postfig img {
+  display: block;
+  /* Natural size, capped at the column. These are line drawings whose labels
+     are set at one point size, so upscaling a narrow figure to fill the column
+     would make its text larger than the next figure's for no reason. A figure
+     is as wide as it was drawn to be. */
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+.postfig figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--grey);
+}
+
+/* --- the lecture ------------------------------------------------------ */
+
+section.slide { scroll-margin-top: 1rem; }
+section.slide > h2 { margin-top: 0; }
+
+/* --- the portrait ----------------------------------------------------- */
+
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+.intro h1 { margin: 0; }
+img.portrait {
+  width: 96px;
+  height: auto;
+  border-radius: 3px;
+  border: 1px solid var(--rule);
+  flex: none;
+}
+@media (max-width: 30rem) {
+  body { font-size: 16px; }
+  h1 { font-size: 1.7rem; }
+  .intro { gap: 0.8rem; }
+  img.portrait { width: 72px; }
+}
+
+/* --- the concept map --------------------------------------------------
+   The picture is the optional half: every relationship it draws is also a row
+   in the table directly below it. The reader chooses the size, because there
+   is no one right one: scaled to the window, or drawn at the size it was laid
+   out and scrolled. The table says the same thing either way. */
+
+/* The map gets a wider window than the reading column, because the column is
+   sized for prose and this is a picture with 22 labelled boxes in it. It breaks
+   out of the column to the width of the viewport, bounded so that it can never
+   be the thing that makes the page scroll sideways: at 400px it is 375px wide,
+   inside the body's own padding. */
+.kcfig {
+  margin: 0 0 1.6rem;
+  width: min(calc(100vw - 2.5rem), 1600px);
+  margin-left: calc((100% - min(100vw - 2.5rem, 1600px)) / 2);
+}
+
+/* Zoom, in three steps, with no JavaScript (D3). The radios are the state and
+   CSS reads them. Fit scales the whole map into the window, Full size draws it
+   at the size it was laid out, Larger draws it half again — and in both of
+   those the window scrolls rather than the labels shrinking. */
+.kczoom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+}
+.kczoom input { position: absolute; opacity: 0; pointer-events: none; }
+.kczoom label {
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  color: var(--grey);
+  background: var(--page);
+}
+.kczoom label:hover { color: var(--ink); border-color: var(--edge); }
+.kczoom input:checked + label {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--page);
+}
+/* The control is operated by keyboard: the focus ring has to be on the label,
+   because the input itself is not where the eye is. */
+.kczoom input:focus-visible + label { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.kcscroll { overflow-x: auto; overflow-y: hidden; padding-bottom: 0.5rem; }
+svg.kcgraph { display: block; height: auto; }
+/* The radios live inside the control, so the picture is not their sibling and
+   `:has()` on the figure is what reaches it. A browser without `:has()` applies
+   none of the three and draws the map at the size it was laid out, inside a
+   window that scrolls — which is where this page was before the control
+   existed. Fit never upscales past that size, or the lines go soft. */
+.kcfig:has(#kc-fit:checked) svg.kcgraph { width: 100%; max-width: var(--kcw); }
+.kcfig:has(#kc-full:checked) svg.kcgraph { width: var(--kcw); max-width: none; }
+.kcfig:has(#kc-large:checked) svg.kcgraph { width: calc(var(--kcw) * 1.5); max-width: none; }
+@media (forced-colors: active) {
+  .kczoom label { border-color: CanvasText; }
+  .kczoom input:checked + label { background: Highlight; color: HighlightText; }
+}
+
+.kc-node { fill: #f7f7f7; stroke: var(--rule); stroke-width: 1; }
+/* A strategy is something you do rather than something you know. The caption
+   says so in words; this is the second cue, and it is a different shape of
+   information from the arrow colours. */
+.kc-node.kc-strategy { fill: #e8f5e9; stroke: #9ccc9f; }
+a:hover .kc-node { fill: var(--panel); stroke: var(--ink); }
+a:focus-visible .kc-node { stroke: var(--blue); stroke-width: 2; }
+.kc-ntext {
+  font: 700 12px/1.25 var(--sans);
+  fill: var(--ink);
+  text-anchor: middle;
+}
+.kc-edge { opacity: 0.85; }
+/* The two or three words drawn beside a line. The box is opaque so the label
+   stays readable where it crosses another curve. */
+.kc-elabel { fill: #ffffff; stroke: var(--rule); stroke-width: 0.75; }
+.kc-etext { font: 400 10.5px/1.2 var(--mono); }
+a:hover .kc-elabel { fill: var(--panel); }
+/* A label that could not sit beside its own curve gets a thread back to it,
+   and a dot on the curve it names. Three labels in one band can read the same
+   word, and the dot is what says which line each belongs to. It is a shape,
+   not a colour, so it survives greyscale and forced colours. */
+.kc-leader { stroke-width: 1.1; stroke-dasharray: 2 2; opacity: 0.95; }
+.kc-anchor { stroke: #fff; stroke-width: 0.8; }
+/* The legend's colour swatches. The kind is also a column in the table, so the
+   swatch is a convenience and never the only way to read the picture. */
+.key { white-space: nowrap; padding-left: 1.1rem; position: relative; }
+.key::before {
+  content: "";
+  position: absolute; left: 0; top: 0.45em;
+  width: 0.85rem; height: 2px; background: var(--c);
+}
+@media (forced-colors: active) {
+  .kc-node { fill: Canvas; stroke: CanvasText; }
+  .kc-node.kc-strategy { fill: Canvas; stroke: CanvasText; stroke-dasharray: 4 2; }
+  .kc-ntext { fill: CanvasText; }
+  .kc-elabel { fill: Canvas; stroke: CanvasText; }
+  .kc-leader { stroke: CanvasText !important; opacity: 1; }
+  .kc-anchor { fill: CanvasText !important; stroke: Canvas !important; }
+}
+
+/* --- print: the CV page is meant to come out as a PDF ------------------ */
+
+@media print {
+  header.band, footer.band, .skip { display: none !important; }
+  /* Tinted bands waste ink and print grey. The rules keep the structure. */
+  .stripe { background: #fff !important; padding: 0.4rem 0; }
+  .stripe + .stripe { border-top: 1px solid #999; }
+  body { font-size: 11pt; color: #000; }
+  .wrap { max-width: none; padding: 0; }
+  main { padding-top: 0; }
+  a { color: #000; text-decoration: none; }
+  h1 { font-size: 20pt; }
+  h2 { font-size: 13pt; margin-top: 1.2rem; page-break-after: avoid; }
+  h3 { page-break-after: avoid; }
+  li, p { page-break-inside: avoid; }
+  pre { display: none; }
+  img.portrait { display: none; }
+}

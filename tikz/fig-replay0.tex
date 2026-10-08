@@ -1,0 +1,27 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{scene-preamble}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily]
+  \fill[sky] (0,2.4) rectangle (16,5.0);
+  \fill[skylight] (0,3.9) rectangle (16,5.0);
+  \fill[sage] (0,0) rectangle (16,2.4);
+  \draw[ln] (0,2.4) -- (16,2.4);
+  % The server the replays came from.
+  \filldraw[fill=stone, ln] (0.7,2.4) rectangle (3.5,4.4);
+  \foreach \y in {2.8,3.3,3.8} \filldraw[fill=slate, thinln] (1.0,\y) rectangle (3.2,\y+0.3);
+  \node[tag, text width=3.2cm] at (2.1,4.75) {anyone's replays};
+  \node[lab, text width=5.2cm] at (2.3,1.6) {a record of every action taken};
+  % The pipe, cut.
+  \draw[ln, line width=1.4pt] (3.6,3.4) -- (6.4,3.4);
+  \draw[ln, line width=1.4pt] (9.6,3.4) -- (12.3,3.4);
+  \draw[ln, line width=1.2pt] (7.5,4.0) -- (8.5,2.8);
+  \draw[ln, line width=1.2pt] (8.5,4.0) -- (7.5,2.8);
+  \node[tag, text width=3.4cm] at (8.0,2.25) {removed};
+  % What was downstream.
+  \filldraw[fill=peach, ln] (12.4,3.7) rectangle (15.4,4.5);
+  \node[lab, text width=2.8cm] at (13.9,4.1) {match-history sites};
+  \filldraw[fill=teal, ln] (12.4,2.5) rectangle (15.4,3.3);
+  \node[lab, text width=2.9cm] at (13.9,2.9) {replay channels};
+  \node[lab, text width=4.2cm] at (13.9,1.6) {no other way to watch those games};
+\end{tikzpicture}
+\end{document}

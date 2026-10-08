@@ -1,0 +1,23 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{scene-preamble}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily]
+  \fill[sky] (0,3.3) rectangle (16,5.2);
+  \fill[skylight] (0,4.4) rectangle (16,5.2);
+  \fill[sage] (0,0) rectangle (16,3.3);
+  \draw[ln] (0,3.3) -- (16,3.3);
+  % The two spans drawn to the same scale, which is the argument: fifty hours
+  % is a thing you can finish and look back at, ten years is not.
+  \node[tag, text width=5cm] at (2.0,4.75) {fifty hours};
+  \filldraw[fill=teal, ln] (0.6,3.75) rectangle (1.3,4.25);
+  \node[lab, text width=4.6cm] at (3.4,3.75) {one machine, no ratios \\ $\rightarrow$ a laid-out factory};
+
+  \node[tag, text width=5cm] at (2.3,2.55) {about ten years};
+  \filldraw[fill=peach, ln] (0.6,1.55) rectangle (15.4,2.05);
+  \node[lab, text width=9.5cm] at (8.0,1.0) {still not good at it by the standard of the people I worked with};
+
+  % The bar for fifty hours, to the same scale, is the small mark at the left.
+  \draw[ln, -{Stealth[length=2.6mm]}] (0.95,3.7) -- (0.95,2.15);
+  \node[lab, text width=6.4cm] at (3.6,0.4) {the short one is the one you can examine afterwards};
+\end{tikzpicture}
+\end{document}

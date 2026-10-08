@@ -1,0 +1,27 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{scene-preamble}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily]
+  \fill[sky] (0,3.0) rectangle (16,5.4);
+  \fill[skylight] (0,4.5) rectangle (16,5.4);
+  \fill[sage] (0,0) rectangle (16,3.0);
+  \draw[ln] (0,3.0) -- (16,3.0);
+  % Two measured predictors, solid. One claimed cause, dashed, because the
+  % study could not establish it.
+  \filldraw[fill=teal, ln] (0.8,3.9) rectangle (4.6,4.8);
+  \node[lab, text width=3.5cm] at (2.7,4.35) {prior game experience};
+  \filldraw[fill=olive, ln] (0.8,2.0) rectangle (4.6,2.9);
+  \node[lab, text width=3.5cm] at (2.7,2.45) {spatial reasoning, measured before};
+  \filldraw[fill=stone, ln, dashed] (0.8,0.3) rectangle (4.6,1.2);
+  \node[lab, text width=3.5cm] at (2.7,0.75) {the game teaching you};
+
+  \filldraw[fill=peach, ln] (11.4,2.1) rectangle (15.4,3.9);
+  \node[lab, text width=3.7cm] at (13.4,3.0) {how well you did};
+
+  \draw[ln, -{Stealth[length=3mm]}, line width=1.2pt] (4.7,4.35) -- (11.3,3.4);
+  \draw[ln, -{Stealth[length=3mm]}, line width=1.2pt] (4.7,2.45) -- (11.3,2.75);
+  \draw[ln, -{Stealth[length=3mm]}, dashed] (4.7,0.75) -- (11.3,2.1);
+  \node[lab, text width=3.2cm] at (8.0,4.35) {measured};
+  \node[lab, text width=3.6cm] at (8.2,0.6) {not established};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,26 @@
+\documentclass[tikz,border=4pt]{standalone}
+\input{scene-preamble}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily]
+  \fill[sky] (0,2.4) rectangle (16,5.6);
+  \fill[skylight] (0,4.4) rectangle (16,5.6);
+  \fill[sage] (0,0) rectangle (16,2.4);
+  \draw[ln] (0,2.4) -- (16,2.4);
+  % One hill, climbed. The vantage point is the whole argument: you can only
+  % look back at a path you have already walked.
+  \filldraw[fill=sagedark, ln] (1.0,2.4) .. controls (4.5,2.5) and (6.5,4.6) .. (8.6,4.6)
+      .. controls (10.7,4.6) and (12.5,2.5) .. (15.4,2.4) -- cycle;
+  \draw[ln, dash pattern=on 4pt off 3pt] (1.6,2.55) .. controls (4.6,2.75) and (6.6,4.42) .. (8.6,4.42);
+  \node[lab, text width=4.4cm] at (5.3,1.75) {getting good at one thing};
+  \walker{8.6}{4.42}{slate}{0}
+  \node[tag, text width=4.6cm] at (8.6,5.95) {from up here you can see the path you took};
+  % The second hill, not yet climbed, reached faster because of the first.
+  \draw[ln, -{Stealth[length=3mm]}] (9.9,4.5) .. controls (11.6,4.9) .. (13.2,3.9);
+  \filldraw[fill=olive, ln] (11.6,2.4) .. controls (13.0,2.5) and (13.6,3.7) .. (14.4,3.7)
+      .. controls (15.2,3.7) and (15.3,2.5) .. (15.9,2.4) -- cycle;
+  \node[lab, text width=3.2cm] at (14.2,1.75) {the next thing, learned faster};
+  % The child who has not climbed anything.
+  \walker{1.5}{0.95}{olive}{0}
+  \node[lab, text width=4.0cm] at (1.5,0.3) {advice from up there sounds hokey down here};
+\end{tikzpicture}
+\end{document}

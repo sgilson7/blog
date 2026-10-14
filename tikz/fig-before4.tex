@@ -1,0 +1,27 @@
+% Section 4: a chat log starts at the first prompt. Work done before it is
+% outside the log, and has to come from the written work and interviews.
+\documentclass[tikz,border=6pt]{standalone}
+\input{splice-preamble}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily]
+  % before the prompt: written work, outside the log
+  \draw[edge, line width=1.2pt, dashed, rounded corners=6pt] (0,0.9) rectangle (6.8,5.0);
+  \sheet{0.55}{1.6}{1.5}{2.1}{rule}
+  \sheet{2.6}{1.6}{1.5}{2.1}{rule}
+  \sheet{4.6}{1.6}{1.5}{2.1}{rule}
+  \node[note, anchor=south] at (3.4,4.0) {Written work, before the chat};
+  % the moment the log begins
+  \draw[red, line width=2pt] (7.4,0.4) -- (7.4,5.4);
+  \node[note, anchor=north, text=red] at (7.4,0.35) {Log begins};
+  % the log
+  \fill[white, draw=edge, line width=1.2pt, rounded corners=6pt] (8.0,0.9) rectangle (15.6,5.0);
+  \fill[tint, draw=edge, line width=1.2pt, rounded corners=4pt] (8.4,3.4) rectangle (13.4,4.5);
+  \node[lbl] at (10.9,3.95) {``Is this proof correct?''};
+  \chatbot{14.6}{2.1}
+  \fill[white, draw=edge, line width=1.2pt, rounded corners=4pt] (8.4,1.4) rectangle (13.4,2.7);
+  \foreach \y in {2.35,2.05,1.75} \draw[rule, line width=1.5pt, line cap=round] (8.8,\y) -- (12.9,\y);
+  % what each side can show
+  \node[lbl, anchor=north] at (3.4,-0.3) {Seen only in the\\written work and interviews};
+  \node[lbl, anchor=north] at (11.8,-0.3) {Seen in the chat log};
+\end{tikzpicture}
+\end{document}

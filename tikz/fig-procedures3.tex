@@ -1,0 +1,35 @@
+% Section 3: where each taught procedure sits in an exchange with a chatbot.
+% Strong prompting shapes the request, collaborative prompting checks each step
+% as it arrives, the hallucination autopsy examines a finished answer.
+\documentclass[tikz,border=6pt]{standalone}
+\input{splice-preamble}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily]
+  % the exchange, left to right
+  \fill[tint, draw=edge, line width=1.2pt, rounded corners=4pt] (0,2.2) rectangle (2.4,3.8);
+  \node[lbl] at (1.2,3.0) {Prompt};
+  \foreach \i/\x in {1/4.0,2/6.6,3/9.2} {
+    \fill[white, draw=edge, line width=1.2pt, rounded corners=4pt] (\x,2.3) rectangle ++(1.8,1.4);
+    \node[lbl] at (\x+0.9,3.0) {Step \i};}
+  \sheet{12.4}{2.0}{1.5}{2.0}{rule}
+  \node[lbl, anchor=north] at (13.15,1.8) {Answer};
+  \draw[flow] (2.5,3.0) -- (3.9,3.0);
+  \draw[flow] (5.9,3.0) -- (6.5,3.0);
+  \draw[flow] (8.5,3.0) -- (9.1,3.0);
+  \draw[flow] (11.1,3.0) -- (12.3,3.0);
+  % B: before the request
+  \node[chip] (b) at (1.2,5.4) {B1--B4};
+  \draw[red, line width=1.3pt] (b.south) -- (1.2,3.9);
+  \node[note, anchor=south] at (1.2,5.9) {Strong\\prompt};
+  % C: a check after every step
+  \node[chip] (c) at (7.5,5.4) {C1--C6};
+  \foreach \x in {4.9,7.5,10.1} \draw[red, line width=1.3pt] (c.south) -- (\x,3.8);
+  \node[note, anchor=south] at (7.5,5.9) {Collaborative prompting,\\a check after each step};
+  % A: after the answer
+  \node[chip] (a) at (13.15,5.4) {A0--A6};
+  \draw[red, line width=1.3pt] (a.south) -- (13.15,4.1);
+  \node[note, anchor=south] at (13.15,5.9) {Hallucination\\autopsy};
+  % the student writes the final proof
+  \node[note, anchor=north] at (7.5,1.6) {In every case, the student writes the final proof};
+\end{tikzpicture}
+\end{document}

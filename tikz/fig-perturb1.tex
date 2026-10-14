@@ -1,0 +1,26 @@
+% Section 1: the iterative perturbation process as a cycle, and the test a
+% question has to pass: 60% or less on each of three attempts.
+\documentclass[tikz,border=6pt]{standalone}
+\input{splice-preamble}
+\begin{document}
+\begin{tikzpicture}[font=\sffamily]
+  \begin{scope}[shift={(3.4,3.3)}]
+    \def\R{2.25}
+    \draw[flow] (62:\R) arc[start angle=62, end angle=4, radius=\R];
+    \draw[flow] (-64:\R) arc[start angle=-64, end angle=-116, radius=\R];
+    \draw[flow] (176:\R) arc[start angle=176, end angle=118, radius=\R];
+    \sheet{-0.62}{1.4}{1.24}{1.7}{red}
+    \chatbot{1.95}{-1.25}
+    \failcard{-2.6}{-1.85}{1.3}
+    \node[lbl, anchor=west] at (1.15,2.75) {Change the\\question};
+    \node[lbl, anchor=north] at (1.95,-2.05) {Ask the model};
+    \node[lbl, anchor=north] at (-1.95,-2.05) {Grade with\\the rubric};
+  \end{scope}
+  \draw[flow] (7.0,3.35) -- (8.6,3.35);
+  % the test: three attempts, each graded 60% or less
+  \foreach \i/\x in {1/8.9,2/11.3,3/13.7} {
+    \failcard{\x}{2.6}{1.5}
+    \node[lbl, anchor=north] at (\x+0.75,2.4) {Attempt \i};}
+  \node[note, anchor=south] at (12.05,4.5) {Kept once the model scores\\below 60\% on three attempts};
+\end{tikzpicture}
+\end{document}

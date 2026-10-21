@@ -22,7 +22,7 @@
 <meta name="author" content="Sam Gilson">
 <meta name="google-site-verification" content="MSQ0LGD6_zGzbznBsabmPTIkp9ASxM_U04OJdrtKgis">
 
-<link rel="stylesheet" href="/blog/styles.css?v=26c9efaf">
+<link rel="stylesheet" href="/blog/styles.css?v=1133f56f">
 <link rel="alternate" type="application/atom+xml" title="Sam Gilson" href="/blog/feed.xml">
 <script type="application/ld+json">
 {
@@ -50,6 +50,8 @@
       <a href="/concepts/">Concepts</a>
       <a href="/teaching/">Teaching</a>
       <a href="/materials/">Course materials</a>
+      <a href="/games/">Games</a>
+      <a href="/tools/">Tools</a>
       <a href="/projects/">Tools and games</a>
       <a href="/cv/">CV</a>
       <a href="/positions/">Seeking work</a>
@@ -65,7 +67,7 @@
 <p class="posted"><time datetime="2026-10-14">14 October 2026</time></p>
 <p>When a student submits a proof, I can read the argument they handed in. I cannot see where the reasoning came from. In an induction problem, for example, a student might have written the base case, chosen the inductive hypothesis, and worked through the inductive step. They might also have asked a chatbot to supply that structure and copied the result. The finished page may look much the same.</p>
 <figure class="postfig">
-<img src="/blog/img/fig-proof0.svg?v=26c9efaf" alt="Two routes to a proof. One student works it out; another exchanges messages with a chatbot. Both routes sit inside a dashed box marked not visible in the submission, and both lead to the same submitted proof." loading="lazy">
+<img src="/blog/img/fig-proof0.svg?v=1133f56f" alt="Two routes to a proof. One student works it out; another exchanges messages with a chatbot. Both routes sit inside a dashed box marked not visible in the submission, and both lead to the same submitted proof." loading="lazy">
 <figcaption>Two routes to a proof. One student works it out; another exchanges messages with a chatbot. Both routes sit inside a dashed box marked not visible in the submission, and both lead to the same submitted proof.</figcaption>
 </figure>
 That distinction has been bothering me in my discrete mathematics courses. A chatbot conversation gives me more to examine than a submission alone, but it raises another question: what was the student doing before the conversation began? I presented this work to the SPLICE LLM Working Group on 9 October 2026; the [talk materials](/talks/gilson-splice2026/) give the slide-by-slide account. Here I want to work through the question that has become harder for me to answer: when a student asks a chatbot to confirm a proof, what are they asking it to do?
@@ -73,7 +75,7 @@ That distinction has been bothering me in my discrete mathematics courses. A cha
 </div></section><section class="stripe"><div class="wrap">
 <h2>Giving students something to check</h2>
 <figure class="postfig">
-<img src="/blog/img/fig-perturb1.svg?v=26c9efaf" alt="The iterative perturbation process as a cycle: change the question, ask the model, grade the answer with the rubric, and change the question again. A question is kept once the model scores below 60% on three attempts, drawn as three failed attempts." loading="lazy">
+<img src="/blog/img/fig-perturb1.svg?v=1133f56f" alt="The iterative perturbation process as a cycle: change the question, ask the model, grade the answer with the rubric, and change the question again. A question is kept once the model scores below 60% on three attempts, drawn as three failed attempts." loading="lazy">
 <figcaption>The iterative perturbation process as a cycle: change the question, ask the model, grade the answer with the rubric, and change the question again. A question is kept once the model scores below 60% on three attempts, drawn as three failed attempts.</figcaption>
 </figure>
 <p>I taught NC State's CSC 226, Discrete Mathematics, in summers 2025 and 2026. I was the instructor of record for both sections. Both studies took place during the final third of the course, in the computer science applications unit. They involved different groups of students, and the second study added instruction that the first did not have.</p>
@@ -90,7 +92,7 @@ That distinction has been bothering me in my discrete mathematics courses. A cha
 </div></section><section class="stripe"><div class="wrap">
 <h2>Teaching the checking</h2>
 <figure class="postfig">
-<img src="/blog/img/fig-procedures3.svg?v=26c9efaf" alt="An exchange with a chatbot, left to right: the prompt, three steps, and the answer. The strong prompt, B1 to B4, attaches to the prompt. Collaborative prompting, C1 to C6, attaches to each step as a check. The hallucination autopsy, A0 to A6, attaches to the finished answer. In every case, the student writes the final proof." loading="lazy">
+<img src="/blog/img/fig-procedures3.svg?v=1133f56f" alt="An exchange with a chatbot, left to right: the prompt, three steps, and the answer. The strong prompt, B1 to B4, attaches to the prompt. Collaborative prompting, C1 to C6, attaches to each step as a check. The hallucination autopsy, A0 to A6, attaches to the finished answer. In every case, the student writes the final proof." loading="lazy">
 <figcaption>An exchange with a chatbot, left to right: the prompt, three steps, and the answer. The strong prompt, B1 to B4, attaches to the prompt. Collaborative prompting, C1 to C6, attaches to each step as a check. The hallucination autopsy, A0 to A6, attaches to the finished answer. In every case, the student writes the final proof.</figcaption>
 </figure>
 <p>In summer 2026, I taught a different section of CSC 226. Twenty-one students were enrolled and eight consented to contribute research data. During the same final-third unit, students completed a perturbed assignment, attended a class session on checking chatbot reasoning, and completed a second perturbed assignment. We also collected pre- and post-instruction AI-literacy surveys and invited students to discuss their interactions with me <sup class="cite"><a href="#ref-SRC" aria-label="Reference 3">3</a></sup>. The chatbot available in this course was newer than the one used in 2025, another reason not to treat differences between the two summers as an instructional effect.</p>
@@ -102,7 +104,7 @@ That distinction has been bothering me in my discrete mathematics courses. A cha
 </div></section><section class="stripe"><div class="wrap">
 <h2>When the answer comes before the prompt</h2>
 <figure class="postfig">
-<img src="/blog/img/fig-before4.svg?v=26c9efaf" alt="A line marks where the chat log begins. To its left, inside a dashed box, is the student's written work from before the chat, seen only in the written work and interviews. To its right is the chat log, opening with the prompt &quot;Is this proof correct?&quot; and the chatbot's reply." loading="lazy">
+<img src="/blog/img/fig-before4.svg?v=1133f56f" alt="A line marks where the chat log begins. To its left, inside a dashed box, is the student's written work from before the chat, seen only in the written work and interviews. To its right is the chat log, opening with the prompt &quot;Is this proof correct?&quot; and the chatbot's reply." loading="lazy">
 <figcaption>A line marks where the chat log begins. To its left, inside a dashed box, is the student's written work from before the chat, seen only in the written work and interviews. To its right is the chat log, opening with the prompt &quot;Is this proof correct?&quot; and the chatbot's reply.</figcaption>
 </figure>
 <p>The 2026 interaction logs are still being coded. I cannot yet say whether the lesson changed how students checked the model. The two interviews I conducted after the final exam have, however, changed what I want to look for.</p>
@@ -150,7 +152,7 @@ That distinction has been bothering me in my discrete mathematics courses. A cha
       <a href="https://eliza.csc.ncsu.edu/">Game2Learn lab</a>
     </p>
     <p class="licence">Original website text by Sam Gilson is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Papers, teaching materials, software, and quoted material retain their own notices.</p>
-    <p class="meta">Build <code>26c9efaf</code></p>
+    <p class="meta">Build <code>1133f56f</code></p>
   </div>
 </footer>
 </body>
